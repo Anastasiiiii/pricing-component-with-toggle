@@ -1,0 +1,5 @@
+.app-cards {
+  display: grid;
+  place-items: center;
+  margin-top: 200px;
+}

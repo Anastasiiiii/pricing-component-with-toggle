@@ -1,0 +1,7 @@
+body {
+  margin: 0;
+  background-color: var(--background-color);
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

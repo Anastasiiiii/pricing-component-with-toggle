@@ -1,0 +1,9 @@
+:root {
+    --background-color: hsl(240, 78%, 98%);
+    --card-bg: white;
+    --text-color: hsl(232, 13%, 33%);
+    --border-color: hsl(234, 14%, 74%);
+    --button-bg: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    --button-text-color: white;
+    --light-text-color: hsl(233, 13%, 49%);
+}
