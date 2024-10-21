@@ -1,12 +1,11 @@
 import React from "react";
 import Card from "./Card";
 import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules'; // Import modules from swiper/modules
-import "../styles/CardsContainer.css";
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper/modules'; // Import navigation and pagination modules
+import 'swiper/css'; // Import Swiper styles
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import '../styles/TripleSlider.css'; // Add your custom styles
 
 const CardsContainer = () => {
 
@@ -30,29 +29,17 @@ const CardsContainer = () => {
 
     return (
         <div className="all-cards-container">
-            <Swiper
-                effect={'coverflow'}
-                grabCursor={true}
-                centeredSlides={true}
-                loop={true}
-                slidesPerView={'auto'}
-                coverflowEffect={{
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 2.5,
-                }}
-                pagination={{ el: '.swiper-pagination', clickable: true }}
-                navigation={{
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                    clickable: true,
-                }}
-                modules={[EffectCoverflow, Pagination, Navigation]}
-                className="swiper_container"
+             <Swiper
+                slidesPerView={3}  // Показує 3 слайди одночасно
+                spaceBetween={5}  // Відстань між слайдами
+                loop={true}        // Увімкнення циклічної прокрутки
+                navigation         // Увімкнення стрілок для навігації
+                pagination={{ clickable: true }}  // Увімкнення пагінації
+                modules={[Navigation, Pagination]}  // Підключення необхідних модулів
+                className="swiper-container"
             >
                 {cardData.map((data, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide key={index} className="swiper-slide">
                         <Card
                             name={data.name}
                             cost={data.cost}
