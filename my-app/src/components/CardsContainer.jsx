@@ -1,13 +1,10 @@
 import React from "react";
+import { useState } from "react";
 import Card from "./Card";
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-import { Navigation, Pagination } from 'swiper/modules'; // Import navigation and pagination modules
-import 'swiper/css'; // Import Swiper styles
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import '../styles/TripleSlider.css'; // Add your custom styles
+import "../styles/CardsContainer.css"
 
 const CardsContainer = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const cardData = [
         {
@@ -27,26 +24,58 @@ const CardsContainer = () => {
         }
     ];
 
+    const goToNextSlide = () => {
+        setActiveIndex((prevIndex) =>
+            prevIndex === cardData.length - 1 ? 0 : prevIndex + 1
+        )
+    }
+
+    const goToPrevSlide = () => {
+        setActiveIndex((prevIndex) =>
+            prevIndex === 0 ? cardData.length - 1 : prevIndex - 1
+        )
+    }
+
     return (
         <div className="all-cards-container">
-             <Swiper
-                slidesPerView={3}  // Показує 3 слайди одночасно
-                spaceBetween={5}  // Відстань між слайдами
-                loop={true}        // Увімкнення циклічної прокрутки
-                navigation         // Увімкнення стрілок для навігації
-                pagination={{ clickable: true }}  // Увімкнення пагінації
-                modules={[Navigation, Pagination]}  // Підключення необхідних модулів
-                className="swiper-container"
-            >
-                {cardData.map((data, index) => (
-                    <SwiperSlide key={index} className="swiper-slide">
-                        <Card
-                            name={data.name}
-                            cost={data.cost}
-                            texts={data.texts} />
-                    </SwiperSlide>
+            <button className="prev-btn" onClick={goToPrevSlide}>
+                &lt;
+            </button>
+            <div className="card-wrapper">
+                {cardData.map((data, index) => {
+                    let position = "next-slide";
+
+                    if (index === activeIndex) {
+                        position = "active-slide";
+                    } else if (index === activeIndex - 1 || (activeIndex === 0 && index === cardData.length - 1)) {
+                        position = "prev-slide";
+                    }
+                    return (
+                        <div key={index}
+                            className={`cart-item  ${position}`}>
+                            <Card
+                                name={data.name}
+                                cost={data.cost}
+                                texts={data.texts} />
+                        </div>
+                    )
+                })}
+            </div>
+            <button className="next-btn" onClick={goToNextSlide}>
+                &gt;
+            </button>
+
+            {/* Пагінація */}
+
+            <div className="pagination">
+                {cardData.map((_, index) => (
+                    <span
+                        key={index}
+                        className={`dot ${index === activeIndex ? "active" : ""}`}
+                        onClick={() => setActiveIndex(index)}
+                    />
                 ))}
-            </Swiper>
+            </div>
         </div>
     );
 }
