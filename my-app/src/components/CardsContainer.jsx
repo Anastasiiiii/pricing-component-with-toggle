@@ -1,11 +1,18 @@
 import React from "react";
-import { useState } from "react";
 import Card from "./Card";
-import "../styles/CardsContainer.css"
+import "../styles/CardsContainer.css";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
+// Import required modules
+import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 const CardsContainer = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-
     const cardData = [
         {
             name: "Basic",
@@ -24,58 +31,36 @@ const CardsContainer = () => {
         }
     ];
 
-    const goToNextSlide = () => {
-        setActiveIndex((prevIndex) =>
-            prevIndex === cardData.length - 1 ? 0 : prevIndex + 1
-        )
-    }
-
-    const goToPrevSlide = () => {
-        setActiveIndex((prevIndex) =>
-            prevIndex === 0 ? cardData.length - 1 : prevIndex - 1
-        )
-    }
-
     return (
         <div className="all-cards-container">
-            <button className="prev-btn" onClick={goToPrevSlide}>
-                &lt;
-            </button>
-            <div className="card-wrapper">
-                {cardData.map((data, index) => {
-                    let position = "next-slide";
-
-                    if (index === activeIndex) {
-                        position = "active-slide";
-                    } else if (index === activeIndex - 1 || (activeIndex === 0 && index === cardData.length - 1)) {
-                        position = "prev-slide";
-                    }
-                    return (
-                        <div key={index}
-                            className={`cart-item  ${position}`}>
+            <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                loop={true}
+                slidesPerView={'auto'}
+                coverflowEffect={{
+                    rotate: 0,
+                    stretch: 0,
+                    depth: 150,
+                    modifier: 2.5,
+                    slideShadows: true,
+                }}
+                autoplay = {{
+                    delay: 3000,
+                    disableOnInteraction: false
+                }}
+            >
+                {cardData.map((data, index) => (
+                    <SwiperSlide key={index}> {/* Added a key prop */}
                             <Card
                                 name={data.name}
                                 cost={data.cost}
-                                texts={data.texts} />
-                        </div>
-                    )
-                })}
-            </div>
-            <button className="next-btn" onClick={goToNextSlide}>
-                &gt;
-            </button>
-
-            {/* Пагінація */}
-
-            <div className="pagination">
-                {cardData.map((_, index) => (
-                    <span
-                        key={index}
-                        className={`dot ${index === activeIndex ? "active" : ""}`}
-                        onClick={() => setActiveIndex(index)}
-                    />
+                                texts={data.texts}
+                            />
+                    </SwiperSlide>
                 ))}
-            </div>
+            </Swiper>
         </div>
     );
 }
