@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import Card from "./Card";
 import "../styles/CardsContainer.css";
 // Import Swiper React components
@@ -13,6 +13,9 @@ import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 
 const CardsContainer = () => {
+    const swiperRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(null);
+
     const cardData = [
         {
             name: "Basic",
@@ -31,33 +34,54 @@ const CardsContainer = () => {
         }
     ];
 
+    const handleCardClick = (index) => {
+        if (swiperRef.current) {
+            swiperRef.current.slideToLoop(index);
+        }
+    }
+
+    const handleSlideChange = (swiper) => {
+        setActiveIndex(swiper.realIndex);
+    };
+
+    const setInitialSlide = (swiper) => {
+        const middleIndex = Math.floor(cardData.length / 2);
+        swiper.slideToLoop(middleIndex);
+    }
+
     return (
         <div className="all-cards-container">
             <Swiper
                 effect={'coverflow'}
-                grabCursor={true}
+                grapCursor={false}
                 centeredSlides={true}
                 loop={true}
-                slidesPerView={'auto'}
+                slidesPerView={3}
                 coverflowEffect={{
                     rotate: 0,
                     stretch: 0,
-                    depth: 150,
+                    depth: 100,
                     modifier: 2.5,
-                    slideShadows: true,
+                    slideShadows: false,
                 }}
-                autoplay = {{
+                autoplay={{
                     delay: 3000,
-                    disableOnInteraction: false
+                    disableOnInteraction: true
                 }}
+                allowTouchMove={false}
+                pagination={false}
+                onSwiper={(swiper) => { swiperRef.current = swiper; setActiveIndex(swiper.realIndex); setInitialSlide(swiper) }}
+                onSlideChange={handleSlideChange}
+                modules={[EffectCoverflow, Pagination]}
             >
                 {cardData.map((data, index) => (
-                    <SwiperSlide key={index}> {/* Added a key prop */}
-                            <Card
-                                name={data.name}
-                                cost={data.cost}
-                                texts={data.texts}
-                            />
+                    <SwiperSlide key={index} className="swiper-slide" onClick={() => handleCardClick(index)}>
+                        <Card
+                            name={data.name}
+                            cost={data.cost}
+                            texts={data.texts}
+                            backgroundColor={index === activeIndex ? "hsl(237, 63%, 64%)" : "white"}
+                        />
                     </SwiperSlide>
                 ))}
             </Swiper>

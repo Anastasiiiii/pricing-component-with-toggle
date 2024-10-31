@@ -6,4 +6,13 @@
     --button-bg: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
     --button-text-color: white;
     --light-text-color: hsl(233, 13%, 49%);
+
+    /*Selected theme*/
+    --card-bg-selected: linear-gradient(hsl(236, 72%, 79%), hsl(237, 63%, 64%));
+    --text-color-selected: white;
+    --border--selected: white;
+    --button-bg-selected: white;
+    --button-text-color-selected: hsl(237, 63%, 64%);
+    --light-text-colorselected: white;
 }
+
