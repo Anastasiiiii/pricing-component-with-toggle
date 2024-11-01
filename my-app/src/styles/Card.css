@@ -1,13 +1,15 @@
 .card-container {
     display: grid;
     place-items: center;
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 490px;
     border: none;
     border-radius: 20px;
     background: var(--card-bg);
     padding-top: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding-top: 0;
 }
 
 .cost-container {
@@ -21,6 +23,7 @@
 #name {
     color: var(--light-text-color);
     margin-bottom: 0;
+    font-size: large;
 }
 
 #cost-container {
@@ -34,45 +37,52 @@
 }
 
 #cost {
-    font-size: 50px;
+    font-size: 70px;
     margin-bottom: 0;
     margin-left: 3px;
 }
 
 .text-container {
-    width: 250px;
+    width: 350px;
     color: var(--light-text-color);
     font-weight: 700;
     font-size: small;
     letter-spacing: 1px;
     border-top: none;
-    border-bottom: 1px solid var(--border-color);
-    margin-top: 0;
+    margin-top: 25px;
     margin-bottom: 0;
 }
 
 .info-box {
     display: grid;
     place-items: center;
-    width: 250px;
+    width: 350px;
     padding-top: 15px;
     padding-bottom: 15px;
     margin-top: 0;
     border-top: 1px solid var(--border-color);
 }
 
-.learn-more-button button{
-    width: 250px;
-    height: 45px;
-    /* Increase height here */
+.learn-more-button{
+    width: 350px;
+    height: 40px;
     border-radius: 7px;
     border: none;
     background: var(--button-bg);
     color: var(--button-text-color);
     font-size: small;
-    /* Adjust font size for better text scaling */
     font-weight: 750;
     letter-spacing: 2px;
     padding: 10px 0;
-    /* You can adjust the padding for more vertical space */
+    margin-top: 40px;
+}
+
+.text-container::after {
+    content: ""; 
+    position: absolute;
+    left: 67%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 1px; 
+    background: var(--border-color); 
 }
