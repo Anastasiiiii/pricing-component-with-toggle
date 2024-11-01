@@ -1,10 +1,11 @@
-.toggle-main-div{
+.toggle-main-div {
     align-content: center;
 }
 
-.toggle-main-div h1{
+.toggle-main-div h1 {
     color: var(--light-text-color);
 }
+
 .toggle-button-container {
     position: relative;
     display: flex;

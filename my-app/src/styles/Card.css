@@ -5,7 +5,6 @@
     height: 490px;
     border: none;
     border-radius: 20px;
-    background: var(--card-bg);
     padding-top: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
@@ -16,12 +15,10 @@
     display: grid;
     place-items: center;
     margin-top: 0;
-    color: var(--text-color);
     font-weight: 600;
 }
 
 #name {
-    color: var(--light-text-color);
     margin-bottom: 0;
     font-size: large;
 }
@@ -44,7 +41,6 @@
 .text-container {
     position: relative;
     width: 350px;
-    color: var(--light-text-color);
     font-weight: 700;
     font-size: small;
     letter-spacing: 1px;
@@ -68,8 +64,6 @@
     height: 40px;
     border-radius: 7px;
     border: none;
-    background: var(--button-bg);
-    color: var(--button-text-color);
     font-size: small;
     font-weight: 750;
     letter-spacing: 2px;
@@ -87,4 +81,3 @@
     height: 1px;
     background: var(--border-color);
 }
-

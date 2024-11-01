@@ -1,9 +1,10 @@
-.toggle-button-box{
+.toggle-button-box {
     position: absolute;
-    top: 40px; 
+    top: 40px;
     left: 42%;
     z-index: 10;
 }
+
 .all-cards-container {
     display: flex;
     align-items: center;
@@ -11,36 +12,36 @@
     padding: 0;
 }
 
-.swiper{
+.swiper {
     padding: 0;
     margin: 0;
 }
 
 .swiper-slide {
-    width: 100%; 
-    max-width: 300px; 
-    transition: transform 0.3s ease; 
+    width: 100%;
+    max-width: 300px;
+    transition: transform 0.3s ease;
 }
 
 .swiper-slide.active-slide {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .card-list {
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 20px;
 }
 
 @media (max-width: 500px) {
-    .toggle-button-box{
-        position: absolute; 
-        top: 40px; 
+    .toggle-button-box {
+        position: absolute;
+        top: 40px;
         left: 32%;
         z-index: 10;
     }
+
     .all-cards-container {
         margin: 7px;
     }
 }
-

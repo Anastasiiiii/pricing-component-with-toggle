@@ -13,7 +13,7 @@ const CardsContainer = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [period, setPeriod] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
-    
+
     //Card data
     const cardData = [
         {
