@@ -29,7 +29,6 @@
 #cost-container {
     display: flex;
     align-items: center;
-    /* Vertically centers the elements */
     justify-content: center;
     font-size: xx-large;
     margin-top: 10px;
@@ -88,3 +87,4 @@
     height: 1px;
     background: var(--border-color);
 }
+

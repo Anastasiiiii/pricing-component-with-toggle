@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/Card.css";
 import "../styles/Formulas.css";
 
-const Card = ({ name, cost, texts, backgroundColor, textColor, buttonBg, buttonTextColor }) => {
+const Card = ({ name, cost, texts, backgroundColor, textColor, buttonBg, buttonTextColor, hoverColor, border }) => {
+    const [isHover, setIsHover] = useState(false);
+
     const renderTextItems = (texts) => {
         return texts.map((text, index) => {
             return <div className="info-box" key={index}>{text}</div>;
         });
+    };
+
+    //Button styles
+    const buttonStyle = {
+        background: isHover ? "transparent" : buttonBg,
+        color: isHover ? hoverColor : buttonTextColor,
+        border: isHover ? border : "none"
     };
 
     return (
@@ -18,7 +27,14 @@ const Card = ({ name, cost, texts, backgroundColor, textColor, buttonBg, buttonT
                 </span>
                 <div className="text-container" style={{ color: textColor }}>
                     {renderTextItems(texts)}
-                    <button className="learn-more-button" style={{background: buttonBg, color: buttonTextColor}}>LEARN MORE</button>
+                    <button
+                        className="learn-more-button"
+                        style={buttonStyle}
+                        onMouseEnter={() => setIsHover(true)}
+                        onMouseLeave={() => setIsHover(false)}
+                    >
+                        LEARN MORE
+                    </button>
                 </div>
             </div>
         </div>

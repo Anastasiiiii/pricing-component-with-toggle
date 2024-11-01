@@ -13,7 +13,8 @@ const CardsContainer = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [period, setPeriod] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
-
+    
+    //Card data
     const cardData = [
         {
             name: "Basic",
@@ -32,10 +33,12 @@ const CardsContainer = () => {
         }
     ];
 
+    //Toggle to change the prices based on the period
     const toggleChangePricePeriod = () => {
         setPeriod(!period);
     };
 
+    //function to change slides with a click
     const handleCardClick = (index) => {
         if (index !== activeIndex) {
             if (swiperRef.current) {
@@ -53,11 +56,13 @@ const CardsContainer = () => {
         swiper.slideToLoop(middleIndex);
     };
 
-const middleIndex = Math.floor((cardData.length - 1) / 2);
+    //Find a middle slide
+    const middleIndex = Math.floor((cardData.length - 1) / 2);
 
+    //UseEffect to change cards place with window resizing 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 500); 
+            setIsMobile(window.innerWidth < 500);
         };
 
         window.addEventListener('resize', handleResize);
@@ -84,6 +89,8 @@ const middleIndex = Math.floor((cardData.length - 1) / 2);
                             textColor={index === middleIndex ? "var(--text-color-selected)" : "var(--text-color)"}
                             buttonBg={index === middleIndex ? "var(--button-bg-selected)" : "var(--button-bg)"}
                             buttonTextColor={index === middleIndex ? "var(--button-text-color-selected)" : "var(--button-text-color)"}
+                            hoverColor={index === activeIndex ? "var(--button-text-color)" : "var(--button-text-color-selected"}
+                            border={index === activeIndex ? "1px solid white" : "1px solid hsl(237, 63%, 64%)"}
                         />
                     ))}
                 </div>
@@ -95,6 +102,7 @@ const middleIndex = Math.floor((cardData.length - 1) / 2);
                     loop={true}
                     slidesPerView={3}
                     spaceBetween={130}
+                    speed={500}
                     coverflowEffect={{
                         rotate: 0,
                         stretch: 0,
@@ -122,6 +130,8 @@ const middleIndex = Math.floor((cardData.length - 1) / 2);
                                 textColor={index === activeIndex ? "var(--text-color-selected)" : "var(--text-color)"}
                                 buttonBg={index === activeIndex ? "var(--button-bg-selected)" : "var(--button-bg)"}
                                 buttonTextColor={index === activeIndex ? "var(--button-text-color-selected)" : "var(--button-text-color)"}
+                                hoverColor={index === activeIndex ? "var(--button-text-color)" : "var(--button-text-color-selected"}
+                                border={index === activeIndex ? "1px solid white" : "1px solid hsl(237, 63%, 64%)"}
                             />
                         </SwiperSlide>
                     ))}
