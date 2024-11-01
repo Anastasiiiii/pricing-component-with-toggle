@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Pricing-component-with-toggle/static/css/main.22faba93.css",
+    "main.js": "/Pricing-component-with-toggle/static/js/main.ee0cb114.js",
+    "static/js/453.ed3810f9.chunk.js": "/Pricing-component-with-toggle/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/Pricing-component-with-toggle/index.html",
+    "main.22faba93.css.map": "/Pricing-component-with-toggle/static/css/main.22faba93.css.map",
+    "main.ee0cb114.js.map": "/Pricing-component-with-toggle/static/js/main.ee0cb114.js.map",
+    "453.ed3810f9.chunk.js.map": "/Pricing-component-with-toggle/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22faba93.css",
+    "static/js/main.ee0cb114.js"
+  ]
+}
