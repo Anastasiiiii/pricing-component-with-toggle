@@ -1,7 +1,7 @@
 .toggle-button-box{
     position: absolute; /* Position it as you need */
-    top: 100px; /* Adjust based on your layout */
-    right: 50%; /* Adjust based on your layout */
+    top: 40px; /* Adjust based on your layout */
+    left: 42%;
     z-index: 10;
 }
 .all-cards-container {
@@ -17,13 +17,13 @@
 }
 
 .swiper-slide {
-    width: 100%; /* Allow flexibility */
-    max-width: 300px; /* Set a max-width to maintain card size */
-    transition: transform 0.3s ease; /* Add a smooth transition */
+    width: 100%; 
+    max-width: 300px; 
+    transition: transform 0.3s ease; 
 }
 
 .swiper-slide.active-slide {
-    transform: scale(1.05); /* Scale up the active card slightly */
+    transform: scale(1.05); 
 }
 
 

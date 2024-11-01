@@ -18,7 +18,6 @@ const CardsContainer = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const [period, setPeriod] = useState(false);
 
-    //Annually
     const cardData = [
         {
             name: "Basic",
@@ -38,9 +37,9 @@ const CardsContainer = () => {
     ];
 
     const toggleChangePricePeriod = () => {
-        if(!period) {
+        if (!period) {
             setPeriod(true);
-        } else{
+        } else {
             setPeriod(false);
         }
     }
