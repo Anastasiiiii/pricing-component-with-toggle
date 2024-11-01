@@ -1,15 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Card from "./Card";
 import "../styles/CardsContainer.css";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-
-// Import required modules
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import Toggle from "./Toggle";
 
@@ -17,6 +12,7 @@ const CardsContainer = () => {
     const swiperRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(null);
     const [period, setPeriod] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 500);
 
     const cardData = [
         {
@@ -37,12 +33,8 @@ const CardsContainer = () => {
     ];
 
     const toggleChangePricePeriod = () => {
-        if (!period) {
-            setPeriod(true);
-        } else {
-            setPeriod(false);
-        }
-    }
+        setPeriod(!period);
+    };
 
     const handleCardClick = (index) => {
         if (index !== activeIndex) {
@@ -50,7 +42,7 @@ const CardsContainer = () => {
                 swiperRef.current.slideToLoop(index);
             }
         }
-    }
+    };
 
     const handleSlideChange = (swiper) => {
         setActiveIndex(swiper.realIndex);
@@ -59,53 +51,84 @@ const CardsContainer = () => {
     const setInitialSlide = (swiper) => {
         const middleIndex = Math.floor(cardData.length / 2);
         swiper.slideToLoop(middleIndex);
-    }
+    };
+
+const middleIndex = Math.floor((cardData.length - 1) / 2);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 500); 
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div className="all-cards-container">
             <div className="toggle-button-box">
                 <Toggle toggleChangePricePeriod={toggleChangePricePeriod} />
             </div>
-            <Swiper
-                effect={'coverflow'}
-                grapCursor={false}
-                centeredSlides={true}
-                loop={true}
-                slidesPerView={3}
-                spaceBetween={130}
-                coverflowEffect={{
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 150,
-                    modifier: 2.5,
-                    slideShadows: false,
-                }}
-                autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: true
-                }}
-                allowTouchMove={false}
-                pagination={false}
-                onSwiper={(swiper) => { swiperRef.current = swiper; setActiveIndex(swiper.realIndex); setInitialSlide(swiper) }}
-                onSlideChange={handleSlideChange}
-                modules={[EffectCoverflow, Pagination]}
-            >
-                {cardData.map((data, index) => (
-                    <SwiperSlide key={index} className="swiper-slide" onClick={() => handleCardClick(index)}>
+            {isMobile ? (
+                <div className="card-list">
+                    {cardData.map((data, index) => (
                         <Card
+                            key={index}
                             name={data.name}
                             cost={data.cost}
                             texts={data.texts}
-                            backgroundColor={index === activeIndex ? "var(--card-bg-selected)" : "var(--card-bg)"}
-                            textColor={index == activeIndex ? "var(--text-color-selected" : "var(--text-color)"}
-                            buttonBg={index == activeIndex ? "var(--button-bg-selected)" : "var(--button-bg)"}
-                            buttonTextColor={index == activeIndex ? "var(--button-text-color-selected" : "var(--button-text-color)"}
+                            backgroundColor={index === middleIndex ? "var(--card-bg-selected)" : "var(--card-bg)"}
+                            textColor={index === middleIndex ? "var(--text-color-selected)" : "var(--text-color)"}
+                            buttonBg={index === middleIndex ? "var(--button-bg-selected)" : "var(--button-bg)"}
+                            buttonTextColor={index === middleIndex ? "var(--button-text-color-selected)" : "var(--button-text-color)"}
                         />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+                    ))}
+                </div>
+            ) : (
+                <Swiper
+                    effect={'coverflow'}
+                    grabCursor={false}
+                    centeredSlides={true}
+                    loop={true}
+                    slidesPerView={3}
+                    spaceBetween={130}
+                    coverflowEffect={{
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 150,
+                        modifier: 2.5,
+                        slideShadows: false,
+                    }}
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: true
+                    }}
+                    allowTouchMove={false}
+                    pagination={false}
+                    onSwiper={(swiper) => { swiperRef.current = swiper; setActiveIndex(swiper.realIndex); setInitialSlide(swiper) }}
+                    onSlideChange={handleSlideChange}
+                    modules={[EffectCoverflow, Pagination]}
+                >
+                    {cardData.map((data, index) => (
+                        <SwiperSlide key={index} className="swiper-slide" onClick={() => handleCardClick(index)}>
+                            <Card
+                                name={data.name}
+                                cost={data.cost}
+                                texts={data.texts}
+                                backgroundColor={index === activeIndex ? "var(--card-bg-selected)" : "var(--card-bg)"}
+                                textColor={index === activeIndex ? "var(--text-color-selected)" : "var(--text-color)"}
+                                buttonBg={index === activeIndex ? "var(--button-bg-selected)" : "var(--button-bg)"}
+                                buttonTextColor={index === activeIndex ? "var(--button-text-color-selected)" : "var(--button-text-color)"}
+                            />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            )}
         </div>
     );
-}
+};
 
 export default CardsContainer;

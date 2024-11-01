@@ -43,6 +43,7 @@
 }
 
 .text-container {
+    position: relative;
     width: 350px;
     color: var(--light-text-color);
     font-weight: 700;
@@ -63,7 +64,7 @@
     border-top: 1px solid var(--border-color);
 }
 
-.learn-more-button{
+.learn-more-button {
     width: 350px;
     height: 40px;
     border-radius: 7px;
@@ -78,11 +79,12 @@
 }
 
 .text-container::after {
-    content: ""; 
+    content: "";
     position: absolute;
-    left: 67%;
+    left: 50%;
     transform: translateX(-50%);
-    width: 350px;
-    height: 1px; 
-    background: var(--border-color); 
+    width: 100%;
+    max-width: 350px;
+    height: 1px;
+    background: var(--border-color);
 }

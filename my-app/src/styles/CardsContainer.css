@@ -1,6 +1,6 @@
 .toggle-button-box{
-    position: absolute; /* Position it as you need */
-    top: 40px; /* Adjust based on your layout */
+    position: absolute;
+    top: 40px; 
     left: 42%;
     z-index: 10;
 }
@@ -26,4 +26,21 @@
     transform: scale(1.05); 
 }
 
+.card-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+@media (max-width: 500px) {
+    .toggle-button-box{
+        position: absolute; 
+        top: 40px; 
+        left: 32%;
+        z-index: 10;
+    }
+    .all-cards-container {
+        margin: 7px;
+    }
+}
 
